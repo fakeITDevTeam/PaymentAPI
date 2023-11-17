@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using PaymentAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy =>
+    policy.WithOrigins("http://localhost:4200")    
+    .AllowAnyMethod()    
+    .AllowAnyHeader()
+);
 
 app.UseHttpsRedirection();
 
